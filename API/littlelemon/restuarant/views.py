@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 
 from .models import MenuItem ,Booking ,Menu
-from .serializers import MenuItemSerializer ,BookingSerializer ,MenuSerializer
+from .serializers import MenuItemSerializer ,BookingSerializer ,MenuSerializer,UserSerializer
 
 
 def index(request):
@@ -37,13 +37,14 @@ class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated]
     
 class MenuItemView(generics.ListCreateAPIView):
   permission_classes = [IsAuthenticated]
   queryset = MenuItem.objects.all()
   serializer_class = MenuItemSerializer
 
-# class UserViewSet(viewsets.ModelViewSet):
-#    queryset = User.objects.all()
-#    serializer_class = UserSerializer
-#    permission_classes = [permissions.IsAuthenticated]
+class UserViewSet(viewsets.ModelViewSet):
+   queryset = User.objects.all()
+   serializer_class = UserSerializer
+   permission_classes = [permissions.IsAuthenticated]
