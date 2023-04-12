@@ -2,6 +2,11 @@ from rest_framework.decorators import api_view
 from .models import MenuItem ,Booking ,Menu
 from .serializers import MenuItemSerializer ,BookingSerializer ,MenuSerializer
 from rest_framework import generics ,viewsets
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    return render(request, 'index.html', {})
 
 # Create your views here. 
 class MenuItemView(generics.ListCreateAPIView):
