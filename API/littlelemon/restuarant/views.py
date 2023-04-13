@@ -25,10 +25,7 @@ def index(request):
 def msg(request):
     return Response({"message":"This view is protected"})
 
-# Create your views here. 
-class MenuItemView(generics.ListCreateAPIView):
-    queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
+# Create your views here.
     
 class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = MenuItem.objects.all()
